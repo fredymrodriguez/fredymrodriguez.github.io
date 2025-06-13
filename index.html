@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive CV - Fredy A. Mendieta Rodriguez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral & Slate -->
+    <!-- Application Structure Plan: A single-page application with a fixed sidebar navigation. This structure was chosen to provide persistent, easy access to all key CV sections without scrolling. The main content area dynamically displays the selected section. This approach breaks down the dense information of a traditional CV into manageable, thematic chunks (Overview, Experience, Publications, etc.), enhancing usability for a user like a hiring manager who needs to find specific information quickly. The 'Overview' acts as a landing dashboard with key metrics for immediate impact. -->
+    <!-- Visualization & Content Choices: 
+        - Key Metrics (Stats): Goal: Inform/Impress -> Method: Dynamic stat cards -> Interaction: Simple display -> Justification: Provides a high-level summary of qualifications at a glance. -> Library: Vanilla JS.
+        - Teaching Experience: Goal: Show Change/Progression -> Method: Styled HTML vertical timeline -> Interaction: None -> Justification: Clearly visualizes the chronological progression of a long and varied teaching career, more engaging than a simple list. -> Library: HTML/CSS.
+        - Awards: Goal: Compare -> Method: Bar Chart -> Interaction: Hover tooltips -> Justification: Visually represents the value and timeline of financial awards, making the achievement more tangible. -> Library: Chart.js.
+        - Skills: Goal: Organize -> Method: Grouped card layout -> Interaction: None -> Justification: Categorizes a diverse skill set for easy scanning and comprehension. -> Library: HTML/Tailwind.
+        - Publications/Presentations: Goal: Organize -> Method: Structured lists -> Interaction: Clickable links -> Justification: Clean, accessible presentation of academic output. -> Library: HTML/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb; /* Warm Neutral: Gray 50 */
+            color: #374151; /* Slate: Gray 700 */
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+        }
+        .nav-link.active {
+            background-color: #e5e7eb; /* Slate: Gray 200 */
+            color: #111827; /* Slate: Gray 900 */
+            border-left-color: #4f46e5; /* Accent: Indigo 600 */
+        }
+        .nav-link:hover {
+            background-color: #f3f4f6; /* Slate: Gray 100 */
+            border-left-color: #a5b4fc; /* Accent: Indigo 300 */
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 bg-white border-r border-gray-200 p-4 md:p-6 space-y-6 md:fixed md:h-full">
+            <div class="text-center md:text-left">
+                <h1 class="text-2xl font-bold text-gray-800">Fredy A. Mendieta R.</h1>
+                <p class="text-sm text-indigo-600">PhD Candidate in Hispanic Linguistics</p>
+            </div>
+            <nav class="space-y-2">
+                <a href="#overview" class="nav-link block font-medium p-3 rounded-lg text-gray-600">Overview</a>
+                <a href="#experience" class="nav-link block font-medium p-3 rounded-lg text-gray-600">Experience</a>
+                <a href="#publications" class="nav-link block font-medium p-3 rounded-lg text-gray-600">Publications</a>
+                <a href="#skills" class="nav-link block font-medium p-3 rounded-lg text-gray-600">Skills & Awards</a>
+                <a href="#development" class="nav-link block font-medium p-3 rounded-lg text-gray-600">Professional Development</a>
+            </nav>
+            <div class="text-xs text-gray-500 pt-6 border-t border-gray-200">
+                <p><strong>Email:</strong> unm.rodriguez@gmail.com</p>
+                <p><strong>Phone:</strong> (505) 400-7495</p>
+                <p class="mt-2">Interactive CV. Last updated: June 2025.</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 md:ml-64 p-6 md:p-10">
+            <!-- Overview Section -->
+            <section id="overview" class="content-section space-y-8">
+                <header>
+                    <h2 class="text-4xl font-bold text-gray-800 border-b pb-4">Overview</h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        This section provides a summary of my professional profile, highlighting my main achievements and objectives. It's the starting point for exploring my academic and professional journey in detail.
+                    </p>
+                </header>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-2 text-indigo-700">Professional Objective</h3>
+                    <p class="text-gray-700">To continue promoting educational equity and exploring new technological approaches for language teaching, leveraging my expertise in linguistics, bilingualism, and natural language processing.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <p class="text-4xl font-bold text-indigo-600" id="years-teaching">15+</p>
+                        <p class="text-sm font-medium text-gray-500 mt-2">Years of Teaching Experience</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <p class="text-4xl font-bold text-indigo-600" id="num-publications">7+</p>
+                        <p class="text-sm font-medium text-gray-500 mt-2">Academic Publications</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <p class="text-4xl font-bold text-indigo-600" id="num-presentations">6+</p>
+                        <p class="text-sm font-medium text-gray-500 mt-2">Recent Presentations</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <p class="text-4xl font-bold text-indigo-600" id="num-languages">4</p>
+                        <p class="text-sm font-medium text-gray-500 mt-2">Languages</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-indigo-700">Academic Background</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <p class="font-bold">Ph.D. in Hispanic Linguistics</p>
+                            <p class="text-gray-600">The University of New Mexico, Albuquerque, USA (Expected: May 2026)</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <p class="font-bold">Master in Linguistics</p>
+                            <p class="text-gray-600">Instituto Caro y Cuervo, Colombia (2016)</p>
+                        </div>
+                         <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <p class="font-bold">B.A. in Spanish and Foreign Languages</p>
+                            <p class="text-gray-600">Universidad Pedagógica Nacional, Colombia (2011)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="content-section space-y-8">
+                <header>
+                    <h2 class="text-4xl font-bold text-gray-800 border-b pb-4">Professional Experience</h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        This section details my teaching, research, and other relevant professional activities. The interactive timeline and specialized sections allow for an in-depth exploration of my career.
+                    </p>
+                </header>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-indigo-700">Teaching Experience</h3>
+                        <div class="border-l-2 border-indigo-200 pl-6 space-y-8" id="teaching-timeline-container">
+                            <!-- Timeline items will be injected here by JS -->
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-indigo-700">Research Experience</h3>
+                        <div class="space-y-4" id="research-experience-container">
+                            <!-- Research experience items will be injected here by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications Section -->
+            <section id="publications" class="content-section space-y-8">
+                 <header>
+                    <h2 class="text-4xl font-bold text-gray-800 border-b pb-4">Publications & Presentations</h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        This section compiles my contributions to the academic field, including books, peer-reviewed articles, and conference presentations. Each entry links to the original source when available.
+                    </p>
+                </header>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-indigo-700">Books</h3>
+                    <div id="books-list" class="space-y-3"></div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-indigo-700">Articles</h3>
+                    <div id="articles-list" class="space-y-3"></div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-indigo-700">Recent Presentations</h3>
+                    <div id="presentations-list" class="space-y-3"></div>
+                </div>
+            </section>
+
+            <!-- Skills & Awards Section -->
+            <section id="skills" class="content-section space-y-8">
+                <header>
+                    <h2 class="text-4xl font-bold text-gray-800 border-b pb-4">Skills & Awards</h2>
+                     <p class="mt-4 text-lg text-gray-600">
+                        A summary of my technical, linguistic, and design competencies, along with recognition of the awards and scholarships that have supported my career. The awards chart provides a quantitative view of this support.
+                    </p>
+                </header>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-indigo-700">Key Skills</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-lg mb-2">Linguistics & Education</h4>
+                            <p class="text-gray-700">Linguistics, Bilingualism, Spanish Language Teaching, Natural Language Processing, Curriculum Development, Technology Integration in Education.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-lg mb-2">Technical Tools</h4>
+                            <p class="text-gray-700">Canvas, BlackBoard, RStudio, Praat, ELAN, Gephi, AntConc, Zotero, Microsoft Office Suite, AI-Environment.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-lg mb-2">Design & Media</h4>
+                            <p class="text-gray-700">Interactive Material Design with AI, Photography, Visual Design, Premiere-Pro, InDesign.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-lg mb-2">Languages</h4>
+                            <p class="text-gray-700">Spanish (Native), English (Advanced), French (Advanced), Portuguese (Beginner).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold my-4 text-indigo-700">Awards & Scholarships</h3>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="chart-container">
+                            <canvas id="awardsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Development Section -->
+            <section id="development" class="content-section space-y-8">
+                 <header>
+                    <h2 class="text-4xl font-bold text-gray-800 border-b pb-4">Professional Development</h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        Committed to continuous learning, this section lists the most recent courses and workshops I have completed to stay updated on best pedagogical and technological practices.
+                    </p>
+                </header>
+                <div id="development-list" class="space-y-3"></div>
+            </section>
+
+        </main>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    const data = {
+        teachingExperience: [
+            { year: "Fall 2025", course: "Medical Spanish (MS in Anesthesiology)", university: "The University of New Mexico" },
+            { year: "Fall 2025", course: "Introducción a la literatura Hispánica", university: "The University of New Mexico" },
+            { year: "Fall 2025", course: "Introduction to Sound Patterns in Spanish", university: "The University of New Mexico" },
+            { year: "Summer 2025", course: "Introduction to Spanish Language", university: "The University of New Mexico (Gallup Campus)" },
+            { year: "Summer 2025", course: "Spanish A 1.1, A 2.2, B 1.4, B 2.3", university: "Instituto Cervantes (Albuquerque)" },
+            { year: "Spring 2025", course: "Spanish for Heritage Learners", university: "The University of New Mexico (Valencia Campus)" },
+            { year: "Fall 2024, Spring 2025", course: "Introduction to Hispanic Linguistics", university: "The University of New Mexico" },
+            { year: "Spring 2024", course: "Developing Spanish Writing Skills", university: "The University of New Mexico" },
+            { year: "Spring 2023, 2022, Fall 2023, 2022, 2021, 2020", course: "Introduction to Sound Patterns in Spanish", university: "The University of New Mexico" },
+            { year: "Fall 2021, Summer 2024, 2023", course: "Grammar in Society", university: "The University of New Mexico" },
+            { year: "Spring 2022, 2021, 2020, Summer 2021, 2020, Fall 2021, 2020, 2019", course: "Introduction to Spanish Language", university: "The University of New Mexico" },
+            { year: "Spring 2019, 2018, Fall 2018", course: "Language and Culture", university: "Universidad Pontificia Bolivariana" },
+            { year: "Spring 2019, 2018, Fall 2018", course: "Lectura crítica", university: "Universidad Pontificia Bolivariana" },
+            { year: "Spring 2019, 2018, Fall 2018", course: "Historia del Español", university: "Universidad de Córdoba" },
+            { year: "Spring 2019, 2018, Fall 2018", course: "Hispanic Phonetics and Phonology", university: "Universidad de Córdoba" },
+            { year: "Spring 2015 - Fall 2015", course: "Introduction to Anglican language and culture", university: "Unilatina, Colombia" },
+            { year: "Spring 2015 - Fall 2015", course: "Translation", university: "Instituto Caro y Cuervo, Universidad Nacional de Colombia, Colombia" },
+            { year: "Spring 2012 - Fall 2013", course: "Spanish Professor", university: "Gimnasio Los Andes" },
+            { year: "Spring 2010 - Fall 2011", course: "EPJA Program Coordinator", university: "Instituto Pedagógico Nacional" },
+        ],
+        researchExperience: [
+            {
+                title: "LOBO LANGUAGE ACQUISITION LAB",
+                institution: "The University of New Mexico, Albuquerque, USA",
+                period: "Spring 2022-present",
+                details: [
+                    "Led a team of undergraduate and graduate researchers in data collection, processing, and coding for a project on Spanish-English bilinguals’ demonstratives.",
+                    "Achieved interrater reliability for the 2024 Spanish-English bilinguals’ demonstratives project.",
+                    "Processed and coded data for a project on Spanish-Ticuna bilinguals’ demonstratives."
+                ]
+            },
+            {
+                title: "Research Assistant",
+                institution: "UNIVERSIDAD PEDAGOGICA NACIONAL, Bogota, Colombia",
+                period: "2017",
+                details: [
+                    "Project: Integral Development for Media Education (DIEM in Spanish)."
+                ]
+            },
+            {
+                title: "Research Assistant",
+                institution: "INSTITUTO CARO Y CUERVO, Bogota, Colombia",
+                period: "Spring 2014-Fall 2017",
+                details: [
+                    "Researcher in linguistics, specializing in lexicography in the field of medicine.",
+                    "Contributed to lexicographic translation between Spanish and Indigenous languages from Colombia."
+                ]
+            }
+        ],
+        books: [
+            {
+                title: "Lexicografía electrónica especializada: El caso del diccionario académico de medicina—DIACME.",
+                publisher: "Instituto Caro y Cuervo (2020)",
+                href: "https://selloeditorial.caroycuervo.gov.co/detalle-libro/lexicografia-electronica-especializada-el-caso-del-diccionario-academico-de-medicina-diacme"
+            }
+        ],
+        articles: [
+            { text: "Spanish–English bilinguals’ use of demonstratives esta and esa. (2024).", source: "Studies in Hispanic and Lusophone Linguistics", href: "https://doi.org/10.1515/shll-2024-2004" },
+            { text: "Tic-Tac (Short story). (2024).", source: "Intersecciones Hispánicas", href: "#" },
+            { text: "“Erre con erre, cigarro...”: Considerations for the design of sociolinguistic questionnaires... (2021).", source: "Universidad Nacional de Colombia", href: "#" },
+            { text: "Traces of seseo in documents from two corpora of New Granada Spanish... (2018).", source: "Proceedings of the X International Congress of the History of the Spanish Language", href: "https://dialnet.unirioja.es/servlet/articulo?codigo=6935826" },
+        ],
+        presentations: [
+            { text: "Gestural Constructions and Spatial Context in Spanish Referential Communication. (2025).", location: "Querencuias 2025, UNM" },
+            { text: "From proximity to clarity: Cognitive networks in co-speech communication. (2024).", location: "Ph. D. Fellowship Colloquium, UNM" },
+            { text: "The influence of space and intersubjectivity on Spanish speakers in Mexico and New Mexico. (2022).", location: "15th High Desert Linguistic Society, UNM" },
+            { text: "Embodied phonology approach to co-speech gestures: Movement II. (2022).", location: "Hispanic Linguistics Symposium, Arizona State University" },
+        ],
+        awards: [
+            { year: 2015, name: "Best MA GPA", amount: 800, currency: "USD (equiv.)" },
+            { year: 2021, name: "Latinx Linguistic Fund", amount: 100, currency: "USD" },
+            { year: 2023, name: "Cristobál de Ávila Fund", amount: 76, currency: "USD" },
+            { year: 2024, name: "Graduate Supplement", amount: 2000, currency: "USD" },
+            { year: 2024, name: "Graduate Success Scholarship", amount: 8000, currency: "USD" },
+        ],
+        development: [
+            { title: "Evidence-Based Practices for Teaching Online", date: "Fall 2024" },
+            { title: "Feedback that Counts: Designing and Implementing a Mid-Course Survey", date: "February 2024" },
+            { title: "Hands-on Experience with Generative AI", date: "October 2023" },
+            { title: "Inclusive Approaches to Education: Teaching Students with Disabilities", date: "September 2023" },
+            { title: "Design Justice: Inclusive and Participatory Strategies for Online Teaching & Learning", date: "September 2023" },
+        ]
+    };
+
+    function navigate(hash) {
+        if (!hash) hash = '#overview';
+
+        contentSections.forEach(section => {
+            if ('#' + section.id === hash) {
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === hash) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('hashchange', () => navigate(window.location.hash));
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.hash = link.getAttribute('href');
+        });
+    });
+    
+    // Initial load
+    navigate(window.location.hash);
+
+    // Populate dynamic content
+    const teachingTimelineContainer = document.getElementById('teaching-timeline-container');
+    data.teachingExperience.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'relative';
+        div.innerHTML = `
+            <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[34px] mt-1.5 border-4 border-white"></div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+                <p class="font-semibold text-gray-800">${item.course}</p>
+                <p class="text-sm text-gray-600">${item.university}</p>
+                <p class="text-xs text-gray-400 mt-1">${item.year}</p>
+            </div>
+        `;
+        teachingTimelineContainer.appendChild(div);
+    });
+
+    const researchExperienceContainer = document.getElementById('research-experience-container');
+    data.researchExperience.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bg-white p-4 rounded-lg shadow-sm';
+        let detailsHtml = item.details.map(detail => `<li class="text-gray-700">${detail}</li>`).join('');
+        div.innerHTML = `
+            <p class="font-bold">${item.title}</p>
+            <p class="text-sm text-gray-500">${item.institution}</p>
+            <p class="text-sm text-gray-500">${item.period}</p>
+            <ul class="list-disc list-inside mt-2">
+                ${detailsHtml}
+            </ul>
+        `;
+        researchExperienceContainer.appendChild(div);
+    });
+
+    const booksContainer = document.getElementById('books-list');
+    data.books.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bg-white p-4 rounded-lg shadow-sm';
+        div.innerHTML = `<p class="font-semibold">${item.title}</p>
+                         <p class="text-gray-600">${item.publisher}</p>
+                         <a href="${item.href}" target="_blank" class="text-sm text-indigo-600 hover:underline">View Book</a>`;
+        booksContainer.appendChild(div);
+    });
+
+    const articlesContainer = document.getElementById('articles-list');
+    data.articles.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bg-white p-4 rounded-lg shadow-sm';
+        div.innerHTML = `<p class="font-semibold">${item.text} <span class="text-gray-500 font-normal">In: ${item.source}</span></p>
+                         <a href="${item.href}" target="_blank" class="text-sm text-indigo-600 hover:underline">View Publication</a>`;
+        articlesContainer.appendChild(div);
+    });
+
+    const presentationsContainer = document.getElementById('presentations-list');
+    data.presentations.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bg-white p-4 rounded-lg shadow-sm';
+        div.innerHTML = `<p class="font-semibold">${item.text}</p>
+                         <p class="text-sm text-gray-500">${item.location}</p>`;
+        presentationsContainer.appendChild(div);
+    });
+
+    const developmentContainer = document.getElementById('development-list');
+    data.development.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bg-white p-4 rounded-lg shadow-sm';
+        div.innerHTML = `<p class="font-semibold">${item.title}</p>
+                         <p class="text-sm text-gray-500">${item.date}</p>`;
+        developmentContainer.appendChild(div);
+    });
+    
+    // Awards Chart
+    const ctx = document.getElementById('awardsChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.awards.map(a => a.year),
+            datasets: [{
+                label: 'Award Amount (USD)',
+                data: data.awards.map(a => a.amount),
+                backgroundColor: 'rgba(79, 70, 229, 0.6)',
+                borderColor: 'rgba(79, 70, 229, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                            }
+                            const awardName = data.awards[context.dataIndex].name;
+                            return [awardName, label];
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value, index, values) {
+                            return '$' + value;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
