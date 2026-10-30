@@ -1,9 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Academic and professional portfolio of Fredy Mendieta Rodriguez, Ph.D., Hispanic linguist, educator, and researcher.">
     <title>Fredy Mendieta-Rodriguez | Portfolio</title>
+
     <style>
         :root {
             --bg-color: #f8f9fa;
@@ -11,14 +14,17 @@
             --text-main: #333;
             --card-bg: #ffffff;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
+
         /* Header & Navigation */
         header {
             background-color: var(--card-bg);
@@ -28,19 +34,27 @@
             top: 0;
             z-index: 100;
         }
+
         .header-content {
             max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
             text-align: center;
         }
-        h1 { margin: 0 0 15px 0; font-size: 28px; color: var(--primary); }
+
+        h1 {
+            margin: 0 0 15px 0;
+            font-size: 28px;
+            color: var(--primary);
+        }
+
         .nav-tabs {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 10px;
         }
+
         .tab-btn {
             background-color: #e9ecef;
             border: none;
@@ -51,16 +65,31 @@
             color: #555;
             cursor: pointer;
             transition: all 0.2s ease;
+            font-family: inherit;
         }
-        .tab-btn:hover { background-color: #dbe0e5; }
-        .tab-btn.active { background-color: var(--primary); color: #fff; }
-        
+
+        .tab-btn:hover {
+            background-color: #dbe0e5;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        /* External Navigation Link */
+        a.tab-btn {
+            display: inline-block;
+            text-decoration: none;
+        }
+
         /* Main Content */
         main {
             max-width: 800px;
             margin: 40px auto;
             padding: 0 20px;
         }
+
         .tab-content {
             display: none;
             background-color: var(--card-bg);
@@ -69,14 +98,30 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.04);
             animation: fadeIn 0.4s ease;
         }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .tab-content.active {
+            display: block;
         }
-        
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Typography & Elements */
-        h2 { color: #222; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-top: 0; }
+        h2 {
+            color: #222;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
         .btn {
             display: inline-block;
             background-color: var(--primary);
@@ -88,132 +133,490 @@
             margin-top: 15px;
             transition: background 0.2s;
         }
-        .btn:hover { background-color: #004494; }
 
-        /* Home Tab Specifics */
-        .profile-container { display: flex; gap: 30px; align-items: center; }
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); flex-shrink: 0; }
-        
-        /* Lists & Stats */
-        .pub-list { list-style: none; padding: 0; }
-        .pub-list li { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-        .pub-list li:last-child { border-bottom: none; }
-        .stats { display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
-        .stat-card { background: #f0f7ff; padding: 20px; border-radius: 8px; flex: 1; text-align: center; border: 1px solid #cce0ff; min-width: 150px; }
-        .stat-num { display: block; font-size: 28px; font-weight: bold; color: var(--primary); }
-        
-        /* CV iframe */
-        .cv-frame { width: 100%; height: 800px; border: 1px solid #ddd; border-radius: 8px; }
+        .btn:hover {
+            background-color: #004494;
+        }
 
+        /* Home Tab */
+        .profile-container {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        /* Publications */
+        .pub-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pub-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pub-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Teaching Statistics */
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: #f0f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            text-align: center;
+            border: 1px solid #cce0ff;
+            min-width: 150px;
+        }
+
+        .stat-num {
+            display: block;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* CV Viewer */
+        .cv-frame {
+            width: 100%;
+            height: 800px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .cv-download {
+            margin-bottom: 15px;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 600px) {
-            .profile-container { flex-direction: column; text-align: center; }
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tab-content {
+                padding: 25px 20px;
+            }
+
+            .cv-frame {
+                height: 600px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
+
 <body>
 
 <header>
     <div class="header-content">
+
         <h1>Fredy Mendieta-Rodriguez</h1>
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="openTab('home', this)">Home</button>
-            <button class="tab-btn" onclick="openTab('teaching', this)">Teaching</button>
-            <button class="tab-btn" onclick="openTab('research', this)">Research</button>
-            <button class="tab-btn" onclick="openTab('cv', this)">CV</button>
-            <button class="tab-btn" onclick="openTab('linguanova', this)">LinguaNova</button>
-            <button class="tab-btn" onclick="openTab('medical', this)">Medical Dictionary</button>
-            <button class="tab-btn" onclick="openTab('photography', this)">Photography</button>
-        </div>
+
+        <nav class="nav-tabs" aria-label="Main navigation">
+
+            <button
+                class="tab-btn active"
+                onclick="openTab('home', this)">
+                Home
+            </button>
+
+            <button
+                class="tab-btn"
+                onclick="openTab('teaching', this)">
+                Teaching
+            </button>
+
+            <button
+                class="tab-btn"
+                onclick="openTab('research', this)">
+                Research
+            </button>
+
+            <button
+                class="tab-btn"
+                onclick="openTab('cv', this)">
+                CV
+            </button>
+
+            <button
+                class="tab-btn"
+                onclick="openTab('medical', this)">
+                Medical Dictionary
+            </button>
+
+            <!-- External Zapoteco Platform Link -->
+            <a
+                class="tab-btn"
+                href="https://fredymrodriguez.github.io/Zapoteco/"
+                target="_blank"
+                rel="noopener noreferrer">
+                Zapoteco Platform
+            </a>
+
+        </nav>
     </div>
 </header>
 
+
 <main>
+
     <!-- HOME -->
-    <div id="home" class="tab-content active">
+    <section id="home" class="tab-content active">
+
         <div class="profile-container">
-            <img src="profile.jpg" alt="Fredy Mendieta-Rodriguez" class="profile-img">
+
+            <img
+                src="profile.jpg"
+                alt="Fredy Mendieta-Rodriguez"
+                class="profile-img">
+
             <div>
+
                 <h2>Ph.D. in Hispanic Linguistics</h2>
-                <p>I am a trilingual educator (Spanish, English, French) and linguist specializing in embodied cognition, sociolinguistics, phonetics, and lexicography of Spanish.<!--[cite: 1] --> I am passionate about creating inclusive, engaging learning environments that foster critical thinking and deep language acquisition.</p>
+
+                <p>
+                    I am a trilingual educator (Spanish, English, French)
+                    and linguist specializing in embodied cognition,
+                    sociolinguistics, phonetics, and lexicography of Spanish.
+                    I am passionate about creating inclusive, engaging
+                    learning environments that foster critical thinking
+                    and deep language acquisition.
+                </p>
+
             </div>
         </div>
-    </div>
+
+    </section>
+
 
     <!-- TEACHING -->
-    <div id="teaching" class="tab-content">
-        <h2>Teaching Philosophy</h2>
-        <p>My teaching philosophy is grounded in the belief that language learning is a transformative process that connects learners to new cultures and perspectives.<!--[cite: 2] --> I am committed to creating inclusive, student-centered learning environments where every learner feels valued, supported, and empowered.<!--[cite: 2] --></p>
-        <p>A major focus of my teaching is developing metalinguistic awareness—helping students shed linguistic shame and recognize that every dialect is legitimate, meaningful, and deeply connected to community and identity.<!--[cite: 2] --></p>
-        
-        <h3>Student Evaluations</h3>
-        <div class="stats">
-            <div class="stat-card"><span class="stat-num">4.21</span>Overall Effectiveness</div>
-            <div class="stat-card"><span class="stat-num">4.29</span>Approachability</div>
-            <div class="stat-card"><span class="stat-num">4.50</span>Helping Students Learn</div>
-        </div>
-    </div>
+    <section id="teaching" class="tab-content">
 
-<!-- RESEARCH -->
-    <div id="research" class="tab-content">
+        <h2>Teaching Philosophy</h2>
+
+        <p>
+            My teaching philosophy is grounded in the belief that language
+            learning is a transformative process that connects learners
+            to new cultures and perspectives. I am committed to creating
+            inclusive, student-centered learning environments where every
+            learner feels valued, supported, and empowered.
+        </p>
+
+        <p>
+            A major focus of my teaching is developing metalinguistic
+            awareness—helping students shed linguistic shame and recognize
+            that every dialect is legitimate, meaningful, and deeply
+            connected to community and identity.
+        </p>
+
+        <h3>Student Evaluations</h3>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <span class="stat-num">4.21</span>
+                Overall Effectiveness
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-num">4.29</span>
+                Approachability
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-num">4.50</span>
+                Helping Students Learn
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESEARCH -->
+    <section id="research" class="tab-content">
+
         <h2>Research & Publications</h2>
-        
+
         <h3>Books Edited or Co-Edited</h3>
+
         <ul class="pub-list">
-            <li><strong>Bernal-Chavez, J., Barrios, W. G., Moreno, D. A., & Mendieta Rodríguez, F. A. (2020).</strong> <em>Lexicografía electrónica especializada: El caso del diccionario académico de medicina—DIACME</em>. Instituto Caro y Cuervo.<!--[cite: 1] --></li>
+
+            <li>
+                <strong>
+                    Bernal-Chavez, J., Barrios, W. G., Moreno, D. A.,
+                    & Mendieta Rodríguez, F. A. (2020).
+                </strong>
+
+                <em>
+                    Lexicografía electrónica especializada: El caso
+                    del diccionario académico de medicina—DIACME.
+                </em>
+                Instituto Caro y Cuervo.
+            </li>
+
         </ul>
+
 
         <h3>Articles Published in Refereed Journals</h3>
+
         <ul class="pub-list">
-            <li><strong>Shin, N., & Mendieta-Rodríguez, F. (2024).</strong> Spanish–English bilinguals’ use of demonstratives esta and esa. <em>Studies in Hispanic and Lusophone Linguistics, 17</em>(1), 87–107. <a href="https://doi.org/10.1515/shll-2024-2004" target="_blank" rel="noopener">https://doi.org/10.1515/shll-2024-2004</a><!--[cite: 1] --></li>
-            <li><strong>Mendieta Rodríguez, F. A. (2021).</strong> “Erre con erre, cigarro...”: Consideraciones para el diseño de cuestionarios sociolingüísticos a propósito del estudio de las róticas en Bogotá. In <em>Estudiar las lenguas y el lenguaje. Trayectorias y retos en Colombia</em> (pp. 57–70). Universidad Nacional de Colombia.<!--[cite: 1] --></li>
-            <li><strong>Mendieta, F., López Barrios, W. G., & Chacón Gómez, Ó. A. (2018).</strong> Rastros de seseo en documentos de dos corpus del español del Nuevo Reino de Granada (siglos XVII y XVIII). <em>Actas del X Congreso Internacional de Historia de la Lengua Española, Vol. 2</em>, pp. 1949-1963. <a href="https://dialnet.unirioja.es/servlet/articulo?codigo=6935826" target="_blank" rel="noopener">https://dialnet.unirioja.es/servlet/articulo?codigo=6935826</a><!--[cite: 1] --></li>
-            <li><strong>Mendieta, F. A. (2016).</strong> Age analysis of Spanish rothics spoken in Bogota. In <em>Language, Phonetics and Etymology’16. Interdisciplinary Conference in Language Studies</em> (pp. 57–67). Dakam Publishing.<!--[cite: 1] --></li>
-            <li><strong>Ávila, Y. Y., Mendieta, F. A., Rodríguez, A. C., Rodríguez, C. A., & Silva, F. N. (2015).</strong> Análisis dialectométrico de las variedades del español de Colombia. Nuevas aproximaciones al ALEC. In <em>Armonía y contrastes: Estudios sobre la variación dialectal, histórica y sociolingüística del español</em> (pp. 107–125). Axac.<!--[cite: 1] --></li>
+
+            <li>
+                <strong>
+                    Shin, N., & Mendieta-Rodríguez, F. (2024).
+                </strong>
+
+                Spanish–English bilinguals’ use of demonstratives
+                esta and esa.
+
+                <em>
+                    Studies in Hispanic and Lusophone Linguistics,
+                    17(1), 87–107.
+                </em>
+
+                <a
+                    href="https://doi.org/10.1515/shll-2024-2004"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    https://doi.org/10.1515/shll-2024-2004
+                </a>
+            </li>
+
+
+            <li>
+                <strong>
+                    Mendieta Rodríguez, F. A. (2021).
+                </strong>
+
+                “Erre con erre, cigarro...”: Consideraciones para el
+                diseño de cuestionarios sociolingüísticos a propósito
+                del estudio de las róticas en Bogotá.
+
+                In <em>
+                    Estudiar las lenguas y el lenguaje. Trayectorias
+                    y retos en Colombia
+                </em> (pp. 57–70).
+
+                Universidad Nacional de Colombia.
+            </li>
+
+
+            <li>
+                <strong>
+                    Mendieta, F., López Barrios, W. G., &
+                    Chacón Gómez, Ó. A. (2018).
+                </strong>
+
+                Rastros de seseo en documentos de dos corpus del español
+                del Nuevo Reino de Granada (siglos XVII y XVIII).
+
+                <em>
+                    Actas del X Congreso Internacional de Historia
+                    de la Lengua Española, Vol. 2
+                </em>, pp. 1949–1963.
+
+                <a
+                    href="https://dialnet.unirioja.es/servlet/articulo?codigo=6935826"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    View Publication
+                </a>
+            </li>
+
+
+            <li>
+                <strong>
+                    Mendieta, F. A. (2016).
+                </strong>
+
+                Age analysis of Spanish rothics spoken in Bogota.
+
+                In <em>
+                    Language, Phonetics and Etymology’16.
+                    Interdisciplinary Conference in Language Studies
+                </em> (pp. 57–67).
+
+                Dakam Publishing.
+            </li>
+
+
+            <li>
+                <strong>
+                    Ávila, Y. Y., Mendieta, F. A., Rodríguez, A. C.,
+                    Rodríguez, C. A., & Silva, F. N. (2015).
+                </strong>
+
+                Análisis dialectométrico de las variedades del español
+                de Colombia. Nuevas aproximaciones al ALEC.
+
+                In <em>
+                    Armonía y contrastes: Estudios sobre la variación
+                    dialectal, histórica y sociolingüística del español
+                </em> (pp. 107–125).
+
+                Axac.
+            </li>
+
         </ul>
+
 
         <h3>Other Publications & Educational Platforms</h3>
+
         <ul class="pub-list">
-            <li><strong>Holguín Chaparro, C. J., Mendieta, F., & Scorcia Pacheco, C. (2024).</strong> "Cuentos (pp. 82-89)." <em>Intersecciones Hispánicas: Revista de Cultura, Literatura y Lingüística 1, 1</em>. <a href="https://digitalrepository.unm.edu/interseccioneshispanicas/vol1/iss1/8" target="_blank" rel="noopener">View Publication</a><!--[cite: 1] --></li>
-            <li><strong>Zapoteco Educational Platform:</strong> An interactive platform dedicated to the preservation and teaching of the Zapotec language. <a href="https://fredymrodriguez.github.io/Zapoteco/" target="_blank" rel="noopener">Access Platform</a></li>
-            <li><strong>LinguaNova:</strong> Exploring linguistic methodologies and modern language learning. <a href="https://fredymrodriguez.github.io/LinguaNova/education.html" target="_blank" rel="noopener">Explore LinguaNova</a></li>
+
+            <li>
+                <strong>
+                    Holguín Chaparro, C. J., Mendieta, F., &
+                    Scorcia Pacheco, C. (2024).
+                </strong>
+
+                "Cuentos (pp. 82–89)."
+
+                <em>
+                    Intersecciones Hispánicas: Revista de Cultura,
+                    Literatura y Lingüística, 1(1).
+                </em>
+
+                <a
+                    href="https://digitalrepository.unm.edu/interseccioneshispanicas/vol1/iss1/8"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    View Publication
+                </a>
+            </li>
+
+
+            <li>
+                <strong>Zapoteco Educational Platform:</strong>
+
+                An interactive platform dedicated to the preservation
+                and teaching of the Zapotec language.
+
+                <a
+                    href="https://fredymrodriguez.github.io/Zapoteco/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Access Platform
+                </a>
+            </li>
+
         </ul>
-    </div>
-    
+
+    </section>
+
+
     <!-- CV -->
-    <div id="cv" class="tab-content">
+    <section id="cv" class="tab-content">
+
         <h2>Curriculum Vitae</h2>
-        <iframe src="CV_2026II.pdf" class="cv-frame" title="Fredy Mendieta-Rodriguez CV"></iframe>
-    </div>
 
-    <!-- LINGUANOVA -->
-    <div id="linguanova" class="tab-content" style="text-align: center;">
-        <h2>LinguaNova</h2>
-        <p>An interactive platform exploring linguistic methodologies and modern language learning. LinguaNova provides cutting-edge tools designed to engage learners and facilitate effective, culturally responsive education.</p>
-        <a href="https://fredymrodriguez.github.io/LinguaNova/education.html" class="btn" target="_blank" rel="noopener">Explore LinguaNova</a>
-    </div>
+        <p>
+            View or download my updated academic and professional
+            curriculum vitae (October 2026).
+        </p>
 
-    <!-- MEDICAL DICTIONARY -->
-    <div id="medical" class="tab-content" style="text-align: center;">
+        <div class="cv-download">
+
+            <a
+                href="CV_2026II.pdf"
+                class="btn"
+                target="_blank"
+                rel="noopener noreferrer">
+                Download / Open CV
+            </a>
+
+        </div>
+
+        <iframe
+            src="CV_2026II.pdf"
+            class="cv-frame"
+            title="Fredy Mendieta Rodriguez - Curriculum Vitae, October 2026">
+        </iframe>
+
+    </section>
+
+
+    <!-- MEDICAL SPANISH DICTIONARY -->
+    <section
+        id="medical"
+        class="tab-content"
+        style="text-align: center;">
+
         <h2>Medical Spanish Dictionary</h2>
-        <p>A comprehensive, specialized dictionary blending lexicography and language for specific purposes. This tool supports healthcare professionals in communicating with Spanish-speaking patients.</p>
-        <a href="https://fredymrodriguez.github.io/MedicalSpanishDictionary/" class="btn" target="_blank" rel="noopener">Access the Dictionary</a>
-    </div>
 
-    <!-- PHOTOGRAPHY -->
-    <div id="photography" class="tab-content" style="text-align: center;">
-        <h2>Fredography</h2>
-        <p>A creative photography portfolio exploring visual storytelling, cultural landscapes, and human connection. This collection reflects my formal training and captures moments from diverse communities.</p>
-        <a href="https://grove-truffle-beb.notion.site/Fredy-Photography-56c7f462056d4f059ab8b38d4b9b877a" class="btn" target="_blank" rel="noopener">View Photography Portfolio</a>
-    </div>
+        <p>
+            A comprehensive, specialized dictionary blending
+            lexicography and language for specific purposes.
+            This tool supports healthcare professionals in
+            communicating with Spanish-speaking patients.
+        </p>
+
+        <a
+            href="https://fredymrodriguez.github.io/MedicalSpanishDictionary/"
+            class="btn"
+            target="_blank"
+            rel="noopener noreferrer">
+            Access the Dictionary
+        </a>
+
+    </section>
+
+
 </main>
 
+
 <script>
+
     function openTab(tabId, element) {
-        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
+
+        // Hide all content sections
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Remove active state from navigation buttons
+        document.querySelectorAll('.nav-tabs .tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Display selected section
+        const selectedTab = document.getElementById(tabId);
+
+        if (selectedTab) {
+            selectedTab.classList.add('active');
+        }
+
+        // Highlight selected navigation button
         element.classList.add('active');
+
     }
+
 </script>
 
 </body>
